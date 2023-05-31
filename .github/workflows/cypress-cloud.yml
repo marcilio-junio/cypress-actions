@@ -12,6 +12,8 @@ jobs:
     container:
       image: cypress/browsers:node18.12.0-chrome103-ff107
       options: --user 1001
+    ##strategy: Isso faz rodar os testes mesmo que deu erro em outros navegadores
+      ##fail-fast: false
     steps: 
       - name: Get code
         uses: actions/checkout@v3.5.2
@@ -51,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   cypress-e2e-firefox:
-    needs:  cypress-e2e-chrome
+    needs:  cypress-e2e-electron
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node18.12.0-chrome103-ff107
